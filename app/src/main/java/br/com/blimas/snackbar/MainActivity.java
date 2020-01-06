@@ -12,6 +12,8 @@ import com.google.android.material.snackbar.Snackbar;
 public class MainActivity extends AppCompatActivity {
 
     private Button btnAbrir;
+    private Button btnFechar;
+    private Snackbar snackbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,21 +22,32 @@ public class MainActivity extends AppCompatActivity {
 
 
         btnAbrir = findViewById(R.id.button_abrir);
+        btnFechar = findViewById(R.id.button_fechar);
 
         btnAbrir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                Snackbar.make(
+                snackbar = Snackbar.make(
                         view,
                         "Botão pressionado",
                         Snackbar.LENGTH_LONG
                 ).setAction("Confirmar", new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        btnAbrir.setText("Botão abrir alterado");
+//                        btnAbrir.setText("Botão abrir alterado");
                     }
-                }).show();
+                });
+
+                snackbar.show();
+            }
+        });
+
+        //criado para exemplificar a possibilidade de fechar uma snackbar utilizando outro metodo
+        btnFechar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                snackbar.dismiss();
             }
         });
     }
